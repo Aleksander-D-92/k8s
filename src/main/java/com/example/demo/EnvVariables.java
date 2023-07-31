@@ -10,4 +10,5 @@ public class EnvVariables {
     private String property2;
     private String property3;
     private String property4;
+    private String authAddress;
 }

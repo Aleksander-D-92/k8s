@@ -12,3 +12,4 @@ env:
     property2: ${VAR_2}
     property3: ${VAR_3}
     property4: ${VAR_4}
+    auth-address: ${AUTH_ADDRESS}
