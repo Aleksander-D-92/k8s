@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.example.demo.dto.TokenResp;
 import com.example.demo.dto.UserResp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -45,16 +46,17 @@ public class API {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserResp> aa5(@RequestBody UserResp req) {
-        var a = UserResp.builder().email("invalid api call").password("invalid api call").build();
-        UserResp block = WebClient.create("http://%s".formatted(envs.getAuthAddress()))
+    public ResponseEntity<TokenResp> aa5(@RequestBody UserResp req) {
+        TokenResp block = WebClient.create("http://%s".formatted(envs.getAuthAddress()))
                 .post()
                 .uri("/token")
                 .bodyValue(req)
                 .retrieve()
-                .bodyToMono(UserResp.class)
+                .bodyToMono(TokenResp.class)
                 .onErrorComplete()
                 .block();
+        var a = new TokenResp();
+        a.setTokenValue("invalid api call");
         return ResponseEntity.ok(block == null ? a : block);
     }
 }
