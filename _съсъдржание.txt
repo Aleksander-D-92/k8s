@@ -1,0 +1,36 @@
+1-10 oбяснява общи неща
+10-13 - build-ва някакъв nodejs dockerfile
+14-31 - обяснява докера Images and Containers и как да създаваш images oт dockerfile
+32 - assignemtn
+35 - как се deploy-ват images
+37 - свършва модула
+38-volumes
+45 - named volumes vs anynimous volumes
+49 - volumes overview
+54 - Dockerfile - args and env variables
+56 - Dockerfile - args and env variables summary
+58 - Networks
+65 - почва по същество
+69 - Почва нов модул. май docker compose
+74,75,76 - ъпдейтва feature-ите на 3-те контейнера
+18 -обяснява dockerfile
+78 - docker-compose почва
+80 - 85 - пише docker-compose фиайла
+87 - utility containers, witch means you can use nodejs without installing it
+94 - 104 - setting up laravel php with docker/docker-compose
+-------------------------------------------------
+105 - 139 deploying docker containers on AWS
+105-109 обяснява глупости
+108 - hello world node project Който връща 1 html page
+-----------------
+140 - summury module before k8s
+-------------------------
+148 k8s
+151 - 155 oбяснява структурата
+155 - 160 как се стартира minikube
+163 - 170 kubectl - create deployment
+171 - 181 deployment.yaml and service.yaml
+179 - livenessProbe
+182 - 198 volumes & confimap 196 - environmental vriables 197 - config map
+199 -  services & netowrking
+201 stignah

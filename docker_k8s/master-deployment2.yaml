@@ -1,0 +1,61 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app2: my-app
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 8080
+      protocol: 'TCP'
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: second-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app2: my-app
+  template:
+    metadata:
+      labels:
+        app2: my-app
+    spec:
+      containers:
+        - name: story
+          image: aleksander92/sb:v3
+          env:
+            - name: VAR_1
+              value: AAA
+            - name: VAR_2
+              value: BBB
+            - name: VAR_3
+              valueFrom:
+                configMapKeyRef:
+                  key: var1
+                  name: data-store-env
+            - name: VAR_4
+              valueFrom:
+                configMapKeyRef:
+                  key: var2
+                  name: data-store-env
+      volumes:
+        - name: story-volume
+          emptyDir: { }
+        - name: aa
+          hostPath:
+            path: /data
+            type: Directory
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: data-store-env
+data:
+  var1: 'pesho'
+  var2: 'gosho'
+

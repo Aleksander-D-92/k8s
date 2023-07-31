@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: second-app-deployment
+spec:
+  replicas: 1 # creates a new pod 3 replicas = 3 pods
+  selector:
+    matchLabels:
+      app: second-app # Select pods with label 'app: second-app' анд 'tier: backend'
+      tier: backend
+    matchExpressions: # does the same as match labels, but its more powerful
+      - key: app
+        operator: In
+        values:
+          - second-app
+          - first-app
+  template:
+    metadata:
+      labels:
+        app: second-app # Select pods with label 'app: second-app' анд 'tier: backend'
+        tier: backend
+    spec:
+      containers:
+        - name: second-spring-boot
+          image: aleksander92/sb1
+          livenessProbe: #if this fails the container will be restarted, usually use with spring boot actuator health check
+            httpGet:
+              path: /
+              port: 8080
+            periodSeconds: 10
+            initialDelaySeconds: 5
+
+

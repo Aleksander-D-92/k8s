@@ -1,0 +1,14 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: shutdown
+  endpoint:
+    shutdown:
+      enabled: true
+env:
+  variables:
+    property1: ${VAR_1}
+    property2: ${VAR_2}
+    property3: ${VAR_3}
+    property4: ${VAR_4}

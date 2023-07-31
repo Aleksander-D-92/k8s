@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+spec:
+  selector:
+    app: second-app # can select by only 1 label if we want to
+  ports:
+    - port: 80 # the outside world port
+      targetPort: 8080 # the port my app is listening on
+      protocol: 'TCP'
+  type: LoadBalancer # it is expose outside the cluster
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: second-app-deployment
+spec:
+  replicas: 1 # creates a new pod 3 replicas = 3 pods
+  selector:
+    matchLabels:
+      app: second-app # Select pods with label 'app: second-app' анд 'tier: backend'
+      tier: backend
+  template:
+    metadata:
+      labels:
+        app: second-app # Select pods with label 'app: second-app' анд 'tier: backend'
+        tier: backend
+    spec:
+      containers:
+        - name: second-spring-boot
+          image: aleksander92/sb1
