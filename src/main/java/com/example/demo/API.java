@@ -55,9 +55,9 @@ public class API {
                 .bodyToMono(TokenResp.class)
                 .onErrorComplete()
                 .block();
-        var a = new TokenResp();
-        a.setTokenValue("invalid api call");
-        return ResponseEntity.ok(block == null ? a : block);
+        var invalidCall = new TokenResp();
+        invalidCall.setTokenValue("invalid api call");
+        return ResponseEntity.ok(block == null ? invalidCall : block);
     }
 }
 
